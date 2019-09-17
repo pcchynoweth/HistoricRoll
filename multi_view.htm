@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style01.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+
+<script>
+function showMember(field, str) {
+    var xhttp;
+//    alert(str)
+    if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    }
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.onreadystatechange = function() {
+//        alert(this.readyState, this.status)
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("txtHint").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "get_members.php?f="+field+"&q="+str,true);
+    xhttp.send();
+}
+$(document).ready(function(){
+  $("button[name='HideIt']").click(function(){
+    $("#txtHint").hide();
+  })
+  $("button[name='ShowIt'").click(function(){
+      $("#txtHint").show();
+})
+});
+
+</script>
+</head>
+<body>
+
+<h2>Membership Queries</h2>
+
+<p>
+    
+    <button type="button" onclick='showMember("`Name`", "A&#37;")'>A</button>
+    <button type="button" onclick='showMember("`Name`", "B&#37;")'>B</button> 
+    <button type="button" onclick='showMember("`Name`", "C&#37;")'>C</button> 
+    <button type="button" onclick='showMember("`Name`", "D&#37;")'>D</button>
+    <button type="button" onclick='showMember("`Name`", "E&#37;")'>E</button>
+    <button type="button" onclick='showMember("`Name`", "F&#37;")'>F</button>
+    <button type="button" onclick='showMember("`Name`", "G&#37;")'>G</button>
+    <button type="button" onclick='showMember("`Name`", "H&#37;")'>H</button>
+    <button type="button" onclick='showMember("`Name`", "I&#37;")'>I</button>
+    <button type="button" onclick='showMember("`Name`", "J&#37;")'>J</button>
+    <button type="button" onclick='showMember("`Name`", "K&#37;")'>K</button> 
+    <button type="button" onclick='showMember("`Name`", "L&#37;")'>L</button> 
+    <button type="button" onclick='showMember("`Name`", "M&#37;")'>M</button> 
+    <button type="button" onclick='showMember("`Name`", "N&#37;")'>N</button> 
+    <button type="button" onclick='showMember("`Name`", "O&#37;")'>O</button> 
+    <button type="button" onclick='showMember("`Name`", "P&#37;")'>P</button> 
+    <button type="button" onclick='showMember("`Name`", "Q&#37;")'>Q</button> 
+    <button type="button" onclick='showMember("`Name`", "R&#37;")'>R</button> 
+    <button type="button" onclick='showMember("`Name`", "S&#37;")'>S</button> 
+    <button type="button" onclick='showMember("`Name`", "T&#37;")'>T</button> 
+    <button type="button" onclick='showMember("`Name`", "U&#37;")'>U</button> 
+    <button type="button" onclick='showMember("`Name`", "V&#37;")'>V</button> 
+    <button type="button" onclick='showMember("`Name`", "W&#37;")'>W</button> 
+    <button type="button" onclick='showMember("`Name`", "X&#37;")'>X</button> 
+    <button type="button" onclick='showMember("`Name`", "Y&#37;")'>Y</button> 
+    <button type="button" onclick='showMember("`Name`", "Z&#37;")'>Z</button>
+</p>
+
+<form>
+<select name="users" onclick="showMember('`Status`', this.value)">
+    <option value="">Select a Status:</option>
+    <option value="Active">Active</option>
+    <option value="Inactive">Inactive</option> 
+    <option value="%ctive">Member</option> 
+    <option value="Removed%">Removed</option> 
+    <option value="%equest">Request</option>
+    <option value="Trans%">Transferred</option> 
+    <option value="Deceas%">Deceased</option> 
+    <option value="NonRes%">Non Resident</option> 
+    <option value="Ordain%">Ordained</option> 
+    <option value="%">Everyone</option> 
+  </select>
+</form>
+<button name="HideIt">Click to Hide</button>
+<button name="ShowIt">Click to Show</button>
+<br>
+<div id="txtHint"><b>Member info will be listed here...</b></div>
+</body>
+</html>
